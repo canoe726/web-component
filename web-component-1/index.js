@@ -1,9 +1,4 @@
-import ReactDOM from './react-dom/ReactDOM.js';
+import App from './App.js';
 
 const root = document.getElementById('root');
-ReactDOM.redner(
-  document.createElement('div', {
-
-  }),
-  root,
-);
+root.appendChild(App())

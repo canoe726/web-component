@@ -44,3 +44,5 @@ class Toggle extends HTMLElement {
 }
 
 customElements.define('my-toggle', Toggle);
+
+export default Toggle;
