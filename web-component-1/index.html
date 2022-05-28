@@ -7,13 +7,51 @@
         height: 100%;
       }
     </style>
+    <script>
+      // my-component
+      const title = ['😀 first change', '👏👏👏 second change', '🙇‍♂️ hello'];
+
+      function changeElement () {
+        const newTitle = title[Math.floor((Math.random() * title.length))];
+        const elem = document.getElementById('mycomp');
+        elem.attributes.title.value = newTitle;
+      }
+    </script>
+    <script>
+      // my-toggle
+      function toggleAll() {
+
+      }
+    </script>
   </head>
   <body>
-    <my-counter
-      id="counter"
-      count="10"
-    ></my-counter>
-    <script src="./counter.js"></script>
-    <!-- <scri src="./index.js"></scri> -->
+    <section id="my-counter-wrapper">
+      <my-counter
+        id="counter"
+        count="10"
+      ></my-counter>
+    </section>
+    <br/>
+    <br/>
+    <section id="my-compomnent-wrapper">
+      <my-component
+        id="mycomp"
+        title="hello world"
+      ></my-component>
+      <button onclick="changeElement()">Change Title</button>
+    </section>
+    <br/>
+    <br/>
+    <section id="my-toggle-wrapper">
+      <button onclick="toggleAll()">Toggle all</button>
+      <form id="todoForm">
+        <input id="todoName" type="text"></input>
+        <button>Add</button>
+      </form>
+      <my-toggle id="mytoggle" todos="[1,2,3]"></my-toggle>
+    </section>
+    <script src="./counter.js" type="module"></script>
+    <script src="./component.js" type="module"></script>
+    <script src="./toggle.js"></script>
   </body>
 </html>
