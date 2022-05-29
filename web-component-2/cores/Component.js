@@ -1,16 +1,20 @@
 class Component {
   $target;
+  $props;
   $state;
-  constructor ($target) {
+  constructor ($target, $props) {
     this.$target = $target;
+    this.$props = $props;
     this.init();
     this.setEvent();
     this.render();
   }
   init () {}
+  mounted () {}
   template () { return ''; }
   render () {
     this.$target.innerHTML = this.template();
+    this.mounted();
   }
   setEvent () {}
   setState (newState) {
