@@ -1,3 +1,5 @@
+import { observe, observable } from './observer.js';
+
 class Component {
   $target;
   $props;
@@ -6,16 +8,21 @@ class Component {
     this.$target = $target;
     this.$props = $props;
     this.init();
-    this.setEvent();
-    this.render();
   }
-  init () {}
-  mounted () {}
+  init () {
+    this.$state = observable(this.initState());
+    observe(() => {
+      this.setEvent();
+      this.render();
+    });
+  }
+  initState () { return {}; }
   template () { return ''; }
   render () {
     this.$target.innerHTML = this.template();
     this.mounted();
   }
+  mounted () {}
   setEvent () {}
   setState (newState) {
     this.$state = { ...this.$state, ...newState };
