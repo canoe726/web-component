@@ -1,32 +1,21 @@
-class Store {
-  #state;
-  #mutation;
-  #actions;
-  state = {};
+import Store from '../cores/VuexStore.js';
 
-  constructor ({ state, mutations, actions }) {
-    this.#state = state;
-    this.#mutation = mutations;
-    this.#actions = actions;
+const store = new Store({
+  state: {
+    a: 10,
+    b: 20,
+  },
+  mutations: {
+    SET_A: (state, payload) => {
+      state.a = payload;
+    },
+    SET_B: (state, payload) => {
+      state.b = payload;
+    },
+  },
+  actions: {
 
-    Object.keys(state).forEach(key => {
-      Object.defineProperty(this.state, key, {
-        get: () => this.#state[key],
-      })
-    });
-  }
+  },
+})
 
-  commit (action, payload) {
-    this.#mutation[action](this.#state, payload);
-  }
-
-  dispatch (action, payload) {
-    return this.#actions[action]({
-      state: this.#state,
-      commit: this.commit.bind(this),
-      dispatch: this.dispatch.bind(this),
-    }, payload);
-  }
-}
-
-export default Store;
+export { store };
