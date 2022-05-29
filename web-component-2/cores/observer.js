@@ -17,6 +17,20 @@ const observable = obj => {
         return _value;
       },
       set: (value) => {
+        if (_value === value) return; // primitive
+        if (JSON.stringify(_value) === JSON.stringify(value)) return; // object, array
+        if (_value instanceof Set && value instanceof Set) { // Set
+          const sameLength = _value.size === valule.size;
+          const sameValue = true;
+          for (const v of _value) {
+            if (!value.has(v)) {
+              sameValue = false;
+              break;
+            }
+          }
+          if (sameLength && sameValue) return;
+        }
+        // Map, WeekSet, WeekMap
         _value = value;
         observers.forEach(fn => fn());
       },
